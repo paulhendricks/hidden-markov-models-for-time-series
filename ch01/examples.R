@@ -1,5 +1,6 @@
 # Load libraries
 library(depmixS4)
+library(flexmix)
 
 # Load data
 earthquakes <- read.csv("../data/earthquakes.csv", 
