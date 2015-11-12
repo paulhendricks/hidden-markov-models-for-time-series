@@ -11,3 +11,6 @@ earthquakes <- data.frame(year = 1900:2006,
                                     8,  7, 18, 16, 13, 12, 13, 20, 15, 16, 12, 18, 
                                     15, 16, 13, 15, 16, 11, 11), 
                           stringsAsFactors = FALSE)
+
+write.csv(earthquakes, "../../data/earthquakes.csv", 
+          row.names = FALSE)
