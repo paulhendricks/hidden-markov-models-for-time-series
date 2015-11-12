@@ -23,3 +23,9 @@ ggplot(earthquakes) +
   theme_bw() + 
   theme(panel.grid.major = element_blank(), 
         panel.grid.minor = element_blank())
+
+# Figure 1.3
+
+# Figure 1.4
+
+# Figure 1.5
