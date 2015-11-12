@@ -44,6 +44,11 @@ pois_HMM_mllk <- function(parvect, x, m, ...) {
   return(mllk)
 }
 
+# A.1.4 ML estimation of a stationary Poisson-HMM
+pois_HMM_mle <- function(parvect, x, m, ...) {
+  
+}
+
 g <- 
   matrix(c(1/3, 1/3, 1/3, 
            2/3, 0/3, 1/3, 
