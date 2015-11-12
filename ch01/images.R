@@ -1,11 +1,10 @@
 library(ggplot2)
 
 # Figure 1.1
-earthquakes$Date <- as.Date(paste0(earthquakes$year, "-01-01"))
-ggplot(earthquakes, aes(x = Date, y = count)) + 
+ggplot(earthquakes, aes(x = year, y = count)) + 
   geom_point() + 
   geom_line() + 
-  scale_x_date("") + 
+  scale_x_continuous("", breaks = seq(1900, 2010, 20)) + 
   scale_y_continuous(limits = c(0, 50)) + 
   theme_bw() + 
   theme(panel.grid.major = element_blank(), 
