@@ -27,7 +27,21 @@ pois_HMM_pw2pn <- function(m, parvect) {
 
 # A.1.3 Log-likelihood of a stationary Poisson-HMM
 pois_HMM_mllk <- function(parvect, x, m, ...) {
-
+  if (m == 1) return(-sum(dpois(x, exp(parvect), log = TRUE)))
+  n <- length(x)
+  pn <- pois_HMM_pw2pn(m, parvect)
+  allprobs <- outer(x, pn$lambda, dpois)
+  allprobs <- ifelse(!is.na(allprobs), allprobs, 1)
+  lscale <- 0
+  foo <- pn$delta
+  for (i in 1:n) {
+    foo <- foo %*% pn$gamma * allprobs[i, ]
+    sumfoo <- sum(foo)
+    lscale <- lscale + log(sumfoo)
+    foo <- foo / sumfoo
+  }
+  mllk <- -lscale
+  return(mllk)
 }
 
 g <- 
