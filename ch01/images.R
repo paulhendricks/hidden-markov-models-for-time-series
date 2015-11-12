@@ -14,8 +14,8 @@ ggplot(earthquakes, aes(x = year, y = count)) +
 ggplot(earthquakes) + 
   geom_histogram(aes(x = count, y = ..density..), 
                  binwidth = 1, fill = "grey", origin = -0.5) + 
-  geom_point(data = data.frame(x = 1:45, 
-                               fit = dpois(1:45, mean(earthquakes$count))), 
+  geom_point(data = data.frame(x = 0:45, 
+                               fit = dpois(0:45, mean(earthquakes$count))), 
              aes(x = x, y = fit)) + 
   scale_x_continuous("", limits = c(0, 45)) + 
   scale_y_continuous("", limits = c(0, 0.10)) + 
