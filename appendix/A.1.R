@@ -48,7 +48,7 @@ pois_HMM_mllk <- function(parvect, x, m, ...) {
 pois_HMM_mle <- function(x, m, lambda0, gamma0, ...) {
   parvect0 <- pois_HMM_pn2pw(m, lambda0, gamma0)
   mod <- nlm(pois_HMM_mllk, parvect0, x = x, m = m)
-  pn <- pois_HMM_pn2pw(m, mod$estimate)
+  pn <- pois_HMM_pw2pn(m, mod$estimate)
   mllk <- mod$minimum
   np <- length(parvect0)
   AIC <- 2 * (mllk + np)
@@ -58,10 +58,10 @@ pois_HMM_mle <- function(x, m, lambda0, gamma0, ...) {
               code = pn$code, mllk = mllk, AIC = AIC, BIC = BIC))
 }
 
-g <- 
-  matrix(c(1/3, 1/3, 1/3, 
-           2/3, 0/3, 1/3, 
-           1/2, 1/2, 0/3), 
-         nrow = 3, ncol = 3, byrow = TRUE)
-pois_HMM_pn2pw(m = 3, lambda = c(3, 6, 9), gamma = g)
-pois_HMM_pn2pw(m = 3, )
+# Example
+m <- 2
+x <- sample(c(rpois(100, 5), rpois(100, 30)), replace = FALSE)
+l0 <- runif(m)
+g0 <- matrix(runif(m ** 2), nrow = m, ncol = m, byrow = TRUE)
+
+pois_HMM_mle(x = x, m = m, lambda0 = l0, gamma0 = g0)
