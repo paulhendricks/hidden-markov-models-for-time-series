@@ -45,8 +45,17 @@ pois_HMM_mllk <- function(parvect, x, m, ...) {
 }
 
 # A.1.4 ML estimation of a stationary Poisson-HMM
-pois_HMM_mle <- function(parvect, x, m, ...) {
-  
+pois_HMM_mle <- function(x, m, lambda0, gamma0, ...) {
+  parvect0 <- pois_HMM_pn2pw(m, lambda0, gamma0)
+  mod <- nlm(pois_HMM_mllk, parvect0, x = x, m = m)
+  pn <- pois_HMM_pn2pw(m, mod$estimate)
+  mllk <- mod$minimum
+  np <- length(parvect0)
+  AIC <- 2 * (mllk + np)
+  n <- sum(!is.na(x))
+  BIC <- 2 * mllk + np * log(n)
+  return(list(lambda = pn$lambda, gamma = pn$gamma, delta = pn$delta, 
+              code = pn$code, mllk = mllk, AIC = AIC, BIC = BIC))
 }
 
 g <- 
