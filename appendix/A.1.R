@@ -25,6 +25,11 @@ pois_HMM_pw2pn <- function(m, parvect) {
   return(list(lambda = lambda, gamma = gamma, delta = delta))
 }
 
+# A.1.3 Log-likelihood of a stationary Poisson-HMM
+pois_HMM_mllk <- function(parvect, x, m, ...) {
+
+}
+
 g <- 
   matrix(c(1/3, 1/3, 1/3, 
            2/3, 0/3, 1/3, 
