@@ -1,3 +1,4 @@
+# Load libraries
 library(ggplot2)
 
 # Load data
