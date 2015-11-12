@@ -1,6 +1,6 @@
 # Changed to adhere to a better style
 
-# A.1.1 Transform natural parameters to working
+# A.1.1 Transform natural parameters to working parameters
 pois_HMM_pn2pw <- function(m, lambda, gamma) {
   tlambda <- log(lambda)
   tgamma <- NULL
