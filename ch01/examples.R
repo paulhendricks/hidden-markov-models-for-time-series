@@ -15,6 +15,3 @@ model_earthquakes <- function(.m, ...) {
 
 set.seed(1)
 fits <- lapply(1:4, model_earthquakes)
-
-
-
