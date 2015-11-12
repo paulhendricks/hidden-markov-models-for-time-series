@@ -1,5 +1,9 @@
 library(ggplot2)
 
+# Load data
+earthquakes <- read.csv("../data/earthquakes.csv", 
+                        stringsAsFactors = FALSE)
+
 # Figure 1.1
 ggplot(earthquakes, aes(x = year, y = count)) + 
   geom_point() + 
