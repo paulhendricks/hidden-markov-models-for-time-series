@@ -71,6 +71,17 @@ pois_HMM_generate_sample <- function(n, m, lambda, gamma, delta = NULL) {
   return(x)
 }
 
+
+r_gamma <- function(m) {
+  gamma_raw <- matrix(runif(m ** 2), nrow = m, ncol = m, byrow = TRUE)
+  gamma_normalized <- gamma_raw / apply(gamma_raw, MARGIN = 1, FUN = sum)
+  return(gamma_normalized)
+}
+
+g <- r_gamma(m)
+
+pois_HMM_generate_sample(n = 100, m = 2, lambda = c(2, 500), gamma = g)
+
 # A.2.2 Forward and backward probabilities
 pois_HMM_lalphabeta <- function(n, m, lambda, gamma, delta = NULL) {
   if (is.null(delta)) 
