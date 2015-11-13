@@ -58,6 +58,19 @@ pois_HMM_mle <- function(x, m, lambda0, gamma0, ...) {
               code = pn$code, mllk = mllk, AIC = AIC, BIC = BIC))
 }
 
+# A.2.1 Generate a realixation of Poisson-HMM
+pois_HMM_generate_sample <- function(n, m, lambda, gamma, delta = NULL) {
+  if (is.null(delta)) 
+    delta <- solve(t(diag(m) - gamma + 1), rep(1, m))
+  mvect <- 1:m
+  state <- numeric(n)
+  state[1] <- sample(mvect, 1, prob = delta)
+  for (i in 2:n) 
+    state[i] <- sample(mvect, 1, prob = gamma[state[i-1], ])
+  x <- rpois(n, lambda = lambda[state])
+  return(x)
+}
+
 # Example
 m <- 2
 x <- sample(c(rpois(100, 5), rpois(100, 30)), replace = FALSE)
