@@ -57,11 +57,3 @@ pois_HMM_mle <- function(x, m, lambda0, gamma0, ...) {
   return(list(lambda = pn$lambda, gamma = pn$gamma, delta = pn$delta, 
               code = pn$code, mllk = mllk, AIC = AIC, BIC = BIC))
 }
-
-# Example
-m <- 2
-x <- sample(c(rpois(100, 5), rpois(100, 30)), replace = FALSE)
-l0 <- runif(m)
-g0 <- matrix(runif(m ** 2), nrow = m, ncol = m, byrow = TRUE)
-
-pois_HMM_mle(x = x, m = m, lambda0 = l0, gamma0 = g0)
