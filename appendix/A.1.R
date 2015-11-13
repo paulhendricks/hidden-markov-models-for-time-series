@@ -71,7 +71,6 @@ pois_HMM_generate_sample <- function(n, m, lambda, gamma, delta = NULL) {
   return(x)
 }
 
-
 r_gamma <- function(m) {
   gamma_raw <- matrix(runif(m ** 2), nrow = m, ncol = m, byrow = TRUE)
   gamma_normalized <- gamma_raw / apply(gamma_raw, MARGIN = 1, FUN = sum)
@@ -113,6 +112,55 @@ pois_HMM_lalphabeta <- function(n, m, lambda, gamma, delta = NULL) {
   }
   return(list(la = lalpha, lbeta = lbeta))
 }
+
+# A.2.3 EM estimation of a Poisson-HMM
+pois_HMM_em <- function() {
+
+  return()
+}
+
+# A.2.4 Viterbi algorithm
+pois_HMM_viterbi <- function() {
+  
+  return()
+}
+
+# A.2.5 Conditional state probabilities
+pois_HMM_state_probs <- function() {
+  
+  return()
+}
+
+# A.2.6 Local decoding
+pois_HMM_local_decoding <- function() {
+  
+  return()
+}
+
+# A.2.7 State prediction
+pois_HMM_state_prediction <- function() {
+  
+  return()
+}
+
+# A.2.8 Forecast distributions
+pois_HMM_local_decoding <- function() {
+  
+  return()
+}
+
+# A.2.9 Conditional distribution of one observation given the rest
+pois_HMM_local_decoding <- function() {
+  
+  return()
+}
+
+# A.2.10 Ordinary pseudo-residuals
+pois_HMM_local_decoding <- function() {
+  
+  return()
+}
+
 
 # Example
 m <- 2
