@@ -15,3 +15,15 @@ model_earthquakes <- function(.m, ...) {
 
 set.seed(1)
 fits <- lapply(1:4, model_earthquakes)
+
+
+# Chapter 3
+pois_HMM_mle(x = earthquakes$count, m = 1, 
+             lambda0 =  c(19), gamma0 = r_gamma(1)) # Exact results
+pois_HMM_mle(x = earthquakes$count, m = 2, 
+             lambda0 =  c(15, 25), gamma0 = r_gamma(2)) # Exact results
+pois_HMM_mle(x = earthquakes$count, m = 3, 
+             lambda0 =  c(13, 19, 29), gamma0 = r_gamma(3)) # Exact results
+pois_HMM_mle(x = earthquakes$count, m = 4, 
+            lambda0 =  c(11.283, 13.853, 19.695, 29.700), 
+            gamma0 = r_gamma(4)) # Trouble reproducing textbook results
