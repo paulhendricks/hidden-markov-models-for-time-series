@@ -71,6 +71,38 @@ pois_HMM_generate_sample <- function(n, m, lambda, gamma, delta = NULL) {
   return(x)
 }
 
+# A.2.2 Forward and backward probabilities
+pois_HMM_lalphabeta <- function(n, m, lambda, gamma, delta = NULL) {
+  if (is.null(delta)) 
+    delta <- solve(t(diag(m) - gamma + 1), rep(1, m))
+  n <- length(x)
+  laplha <- lbeta <- as.matrix(NA, m, n)
+  allprobs <- outer(x, lambda, pois)
+  foo <- delta * allprobs[1, ]
+  sumfoo <- sum(foo)
+  lscale <- log(sumfoo)
+  foo <- foo / sumfoo
+  laplha[, 1] <- log(foo) + lscale
+  for (i in 2:n) {
+    foo <- foo %*% gamma * allprobs[i, ]
+    sumfoo <- sum(foo)
+    lscale <- lscale  + log(sumfoo)
+    foo <- foo / sumfoo
+    laplha[, 1] <- log(foo) + lscale
+  }
+  lbeta[, n] <- rep(0, m)
+  foo <- rep(1 / m, m)
+  lscale <- log(m) 
+  for (i in (n - 1):1) {
+    foo <- gamma %*% (allprobs[i + 1, ] * foo)
+    lbeta[, i] <- log(foo) + lscale
+    sumfoo <- sum(foo)
+    lscale <- lscale  + log(sumfoo)
+    foo <- foo / sumfoo
+  }
+  return(list(la = lalpha, lbeta = lbeta))
+}
+
 # Example
 m <- 2
 x <- sample(c(rpois(100, 5), rpois(100, 30)), replace = FALSE)
