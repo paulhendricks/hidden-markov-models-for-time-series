@@ -1,6 +1,8 @@
 # Load libraries
 library(depmixS4)
 library(flexmix)
+library(msm)
+library(mhsmm)
 
 # Load data
 earthquakes <- read.csv("../data/earthquakes.csv", 
@@ -44,3 +46,7 @@ pois_HMM_mle(x = x, m = m, lambda0 = l0, gamma0 = g0)
 g <- r_gamma(m)
 
 pois_HMM_generate_sample(n = 100, m = 2, lambda = c(2, 500), gamma = g)
+
+
+# Using msm
+hmmPois(5)
