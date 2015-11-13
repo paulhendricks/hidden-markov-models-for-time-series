@@ -19,10 +19,6 @@ r_gamma <- function(m) {
   return(gamma_normalized)
 }
 
-g <- r_gamma(m)
-
-pois_HMM_generate_sample(n = 100, m = 2, lambda = c(2, 500), gamma = g)
-
 # A.2.2 Forward and backward probabilities
 pois_HMM_lalphabeta <- function(n, m, lambda, gamma, delta = NULL) {
   if (is.null(delta)) 
