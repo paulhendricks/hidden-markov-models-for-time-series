@@ -6,6 +6,10 @@ library(flexmix)
 earthquakes <- read.csv("../data/earthquakes.csv", 
                         stringsAsFactors = FALSE)
 
+# Load functions
+source("../appendix/A.1.R")
+source("../appendix/A.2.R")
+
 # Table 1.2
 model_earthquakes <- function(.m, ...) {
   .model <- depmix(response = count ~ 1, data = earthquakes, 
