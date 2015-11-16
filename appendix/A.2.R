@@ -92,7 +92,10 @@ pois_HMM_state_probs <- function() {
 
 # A.2.6 Local decoding
 pois_HMM_local_decoding <- function() {
+  n <- length(x)
   stateprobs <- pois_HMM_state_probs(x, m, lambda, gamma, delta = delta)
+  ild <- rep(NA, n)
+  for (i in 1:n) ild[i] <- which.max(stateprobs[, i])
   return(ild)
 }
 
