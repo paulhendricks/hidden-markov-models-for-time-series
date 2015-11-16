@@ -52,15 +52,36 @@ pois_HMM_lalphabeta <- function(n, m, lambda, gamma, delta = NULL) {
 }
 
 # A.2.3 EM estimation of a Poisson-HMM
-pois_HMM_em <- function() {
+pois_HMM_em <- function(x, m, lambda, gamma, delta, 
+                        maxiter = 1000, tol = 1e-6, ...) {
+  lambda_next <- lambda
+  gamma_next <- gamma
+  delta_next <- delta
+  
+  
   
   return()
 }
 
 # A.2.4 Viterbi algorithm
-pois_HMM_viterbi <- function() {
-  
-  return()
+pois_HMM_viterbi <- function(x, m, lambda, gamma, delta = NULL) {
+  if (is.null(delta)) 
+    delta <- solve(t(diag(m) - gamma + 1), rep(1, m))
+  n <- length(x)
+  poisprobs <- outer(x, lambda, dpois)
+  xi <- matrix(0, n, m)
+  foo <- delta * poisprobs[1, ]
+  xi[1, ] <- foo / sum(foo)
+  for (i in 2:n) {
+    foo <- apply(xi[i - 1, ] * gamma, 2, max) * poisprobs[i, ]
+    xi[i, ] <- foo / sum(foo)
+  }
+  iv <- numeric(n)
+  iv[n] <- which.max(xi[n, ])
+  for (i in (n-1):1) {
+    iv[i] <- which.max(gamma[, iv[i + 1] * xi[i, ]])
+  }
+  return(iv)
 }
 
 # A.2.5 Conditional state probabilities
@@ -77,7 +98,8 @@ pois_HMM_local_decoding <- function() {
 
 # A.2.7 State prediction
 pois_HMM_state_prediction <- function() {
-  
+  if (is.null(delta)) 
+    delta <- solve(t(diag(m) - gamma + 1), rep(1, m))
   return()
 }
 
