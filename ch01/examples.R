@@ -11,6 +11,8 @@ earthquakes <- read.csv("../data/earthquakes.csv",
 # Load functions
 source("../appendix/A.1.R")
 source("../appendix/A.2.R")
+source("../appendix/A.3.R")
+source("../appendix/A.4.R")
 
 # Table 1.2
 model_earthquakes <- function(.m, ...) {
@@ -21,7 +23,6 @@ model_earthquakes <- function(.m, ...) {
 
 set.seed(1)
 fits <- lapply(1:4, model_earthquakes)
-
 
 # Chapter 3
 pois_HMM_mle(x = earthquakes$count, m = 1, 
@@ -34,7 +35,6 @@ pois_HMM_mle(x = earthquakes$count, m = 4,
             lambda0 =  c(11.283, 13.853, 19.695, 29.700), 
             gamma0 = r_gamma(4)) # Trouble reproducing textbook results
 
-
 # Example
 m <- 2
 x <- sample(c(rpois(100, 5), rpois(100, 30)), replace = FALSE)
@@ -46,7 +46,6 @@ pois_HMM_mle(x = x, m = m, lambda0 = l0, gamma0 = g0)
 g <- r_gamma(m)
 
 pois_HMM_generate_sample(n = 100, m = 2, lambda = c(2, 500), gamma = g)
-
 
 # Using msm
 hmmPois(5)
