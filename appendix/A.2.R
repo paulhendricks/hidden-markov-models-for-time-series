@@ -92,8 +92,8 @@ pois_HMM_state_probs <- function() {
 
 # A.2.6 Local decoding
 pois_HMM_local_decoding <- function() {
-  
-  return()
+  stateprobs <- pois_HMM_state_probs(x, m, lambda, gamma, delta = delta)
+  return(ild)
 }
 
 # A.2.7 State prediction
@@ -104,19 +104,19 @@ pois_HMM_state_prediction <- function() {
 }
 
 # A.2.8 Forecast distributions
-pois_HMM_local_decoding <- function() {
+pois_HMM_forecast <- function() {
   
   return()
 }
 
 # A.2.9 Conditional distribution of one observation given the rest
-pois_HMM_local_decoding <- function() {
-  
-  return()
+pois_HMM_conditionals <- function() {
+
+    return()
 }
 
 # A.2.10 Ordinary pseudo-residuals
-pois_HMM_local_decoding <- function() {
+pois_HMM_local_psuedo_residuals <- function() {
   
   return()
 }
